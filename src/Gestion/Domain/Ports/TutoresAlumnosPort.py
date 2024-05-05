@@ -8,7 +8,7 @@ class TutoresAlumnosPort(ABC):
         pass
 
     @abstractmethod
-    def getTuroresAlumnos(self):
+    def getTuroresAlumnos(self, tutor_uuid):
         pass
 
     @abstractmethod

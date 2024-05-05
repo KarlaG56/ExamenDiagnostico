@@ -10,11 +10,11 @@ class TutoresAlumnosRepository(TutoresAlumnosPort):
         Base.metadata.create_all(engine)
         self.session = session_local()
 
-    def getTuroresAlumnos(self):
-        return [p.responsed() for p in self.session.query(TuroresAlumnos).all()]
+    def getTuroresAlumnos(self, tutor_uuid):
+        return [p.responsed() for p in self.session.query(Model).filter(Model.tutor_uuid == tutor_uuid).all()]
 
     def crearTuroresAlumnos(self, turoresAlumnos: TuroresAlumnos):
-        new = Model(**turoresAlumnos)
+        new = Model(**turoresAlumnos.__dict__)
         self.session.add(new)
         self.session.commit()
-        return new.responsed()
+        return new.responsed(), 201

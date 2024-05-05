@@ -6,10 +6,14 @@ from src.Gestion.Domain.Ports.AlumnosMateriasPort import AlumnosMateriasPort
 
 class AlumnosMateriasRepository(AlumnosMateriasPort):
     def __init__(self):
-        pass
+        Base.metadata.create_all(engine)
+        self.session = session_local()
 
-    def getAlumnosMaterias(self):
-        pass
+    def getAlumnosMaterias(self, alumno_uuid):
+        return [p.responsed() for p in self.session.query(Model).filter(Model.alumno_uuid == alumno_uuid).all()]
 
     def createAlumnosMaterias(self, alumnosMaterias: AlumnosMaterias):
-        pass
+        new = Model(**alumnosMaterias.__dict__)
+        self.session.add(new)
+        self.session.commit()
+        return new.responsed(), 201

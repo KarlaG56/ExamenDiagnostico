@@ -8,7 +8,7 @@ class AlumnosMateriasPort(ABC):
         pass
 
     @abstractmethod
-    def getAlumnosMaterias(self):
+    def getAlumnosMaterias(self, alumno_uuid):
         pass
 
     @abstractmethod
