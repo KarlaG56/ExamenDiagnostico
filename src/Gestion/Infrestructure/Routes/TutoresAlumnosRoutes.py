@@ -12,6 +12,6 @@ tutores_alumnos_routes = Blueprint('tutores_alumnos_routes', __name__)
 def get_tutores_alumnos(tutor_uuid):
     return get_controller.run(tutor_uuid)
 
-@tutores_alumnos_routes.route('/', methods=['POST'])
+@tutores_alumnos_routes.route('/', methods=['PUT'])
 def create_tutores_alumnos():
     return create_controller.run(request)

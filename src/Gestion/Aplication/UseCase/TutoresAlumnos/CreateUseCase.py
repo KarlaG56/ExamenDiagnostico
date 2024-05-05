@@ -7,4 +7,7 @@ class CreateUseCase:
         self.repository = port
 
     def run(self, data):
-        return self.repository.crearTuroresAlumnos(TuroresAlumnos(**data))
+        try:
+            return self.repository.crearTuroresAlumnos(TuroresAlumnos(**data))
+        except Exception as e:
+            return {"error": str(e)}, 404
